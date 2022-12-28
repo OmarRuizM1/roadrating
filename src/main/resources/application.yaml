@@ -1,12 +1,7 @@
 server:
-  port: 8080
+  port: 8181
 
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/roadrating
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     mongodb:
 #      authentication-database: admin
@@ -16,10 +11,9 @@ spring:
       port: 27017
       host: localhost
 
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL57Dialect
-    hibernate:
-      ddl-auto: create
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
 
 
 

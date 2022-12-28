@@ -45,6 +45,7 @@ object Tags {
         "Maleducado",
         "Educado",
         "Nervioso",
+        "Se saltó un semáforo"
     )
     //TODO pensar si poner donde ha pasado, autovia, aparcado, ciudad etc etc pal futuro
 
