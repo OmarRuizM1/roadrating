@@ -1,7 +1,6 @@
 package com.road.rating.domain.validation
 
 import com.road.rating.domain.model.RateLicenseModel
-import com.road.rating.domain.validation.exceptions.RegexException
 import java.util.regex.Pattern
 import org.springframework.stereotype.Component
 
@@ -14,6 +13,6 @@ class NewLicenseValidation : RateLicenseValidator {
     override fun validate(rateLicenseModel: RateLicenseModel) {
         val newLicenseFind = newLicense.matcher(rateLicenseModel.license).find()
         val oldLicenseFind = oldLicense.matcher(rateLicenseModel.license).find()
-        if (!newLicenseFind && !oldLicenseFind) throw RegexException("Invalid License")
+        if (!newLicenseFind && !oldLicenseFind) throw ValidationException("Invalid License")
     }
 }

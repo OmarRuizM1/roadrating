@@ -8,6 +8,6 @@ import java.util.*
 fun RateLicenseDTO.toModel() = RateLicenseModel(
     id = UUID.randomUUID().toString(),
     license = license,
-    reviews = reviews,
+    tags = tags,
     assessment = Assessment.returnValue(assessment)
 )

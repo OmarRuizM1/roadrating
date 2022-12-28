@@ -16,8 +16,8 @@ class RateLicenseController(private val rateLicenseHandler: RateLicenseHandler) 
     @PostMapping("/rate")
     fun rate(@RequestBody rateLicenseDto: RateLicenseDTO) = rateLicenseHandler.rate(rateLicenseDto.toModel())
 
-    @GetMapping("/reviewOptions")
-    fun reviewOptions() = rateLicenseHandler.reviewOptions()
+    @GetMapping("/tagOptions")
+    fun tagOptions() = rateLicenseHandler.tagOptions()
 
     @GetMapping("/assessmentOptions")
     fun assessmentOptions() = rateLicenseHandler.assessmentOptions()

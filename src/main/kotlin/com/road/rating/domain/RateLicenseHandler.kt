@@ -1,7 +1,7 @@
 package com.road.rating.domain
 
 import com.road.rating.adapters.RateLicenseDocRepositoryAdapter
-import com.road.rating.domain.constants.Reviews
+import com.road.rating.domain.constants.Tags
 import com.road.rating.domain.enums.Assessment
 import com.road.rating.domain.model.RateLicenseModel
 import com.road.rating.domain.util.PrepareLicenseUtil
@@ -21,6 +21,6 @@ class RateLicenseHandler(
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
 
-    fun reviewOptions() = Reviews.spanishReviews
+    fun tagOptions() = Tags.spanishTags
     fun assessmentOptions() = Assessment.values().toSet()
 }

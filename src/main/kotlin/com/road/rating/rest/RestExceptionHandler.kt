@@ -1,7 +1,6 @@
 package com.road.rating.rest
 
-import com.road.rating.domain.validation.exceptions.RatingException
-import com.road.rating.domain.validation.exceptions.RegexException
+import com.road.rating.domain.validation.ValidationException
 import mu.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,14 +12,8 @@ private val log = KotlinLogging.logger {}
 @RestControllerAdvice
 class RestExceptionHandler {
 
-    @ExceptionHandler(RatingException::class)
-    fun handle(exception: RatingException): ResponseEntity<Any> {
-        log.warn { exception.message }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
-    }
-
-    @ExceptionHandler(RegexException::class)
-    fun handle(exception: RegexException): ResponseEntity<Any> {
+    @ExceptionHandler(ValidationException::class)
+    fun handle(exception: ValidationException): ResponseEntity<Any> {
         log.warn { exception.message }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.message)
     }

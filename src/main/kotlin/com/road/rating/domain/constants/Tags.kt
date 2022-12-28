@@ -1,10 +1,10 @@
 package com.road.rating.domain.constants
 
-object Reviews {
+object Tags {
     //This is here to save requests to db right now
 
     //Spanish
-    val spanishReviews: Set<String> = setOf(
+    val spanishTags: Set<String> = setOf(
         "Aparcó mal",
         "Aparcó correctamente",
         "Cambio inadecuado de carril",

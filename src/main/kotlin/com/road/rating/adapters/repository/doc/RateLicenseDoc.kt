@@ -10,7 +10,7 @@ data class RateLicenseDoc(
     @Id
     val id: String,
     val license: String,
-    val reviews: Set<String>,
+    val tags: Set<String>,
     val assessment: String,
     @Version val version: Int = 0
 )
