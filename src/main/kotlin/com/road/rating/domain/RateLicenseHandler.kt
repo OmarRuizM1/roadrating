@@ -1,6 +1,8 @@
 package com.road.rating.domain
 
 import com.road.rating.adapters.RateLicenseDocRepositoryAdapter
+import com.road.rating.domain.constants.Reviews
+import com.road.rating.domain.enums.Assessment
 import com.road.rating.domain.model.RateLicenseModel
 import com.road.rating.domain.util.PrepareLicenseUtil
 import com.road.rating.domain.validation.RateLicenseValidator
@@ -18,4 +20,7 @@ class RateLicenseHandler(
         rateLicenseValidator.parallelStream().forEach { it.validate(rateLicenseModel) }
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
+
+    fun reviewOptions() = Reviews.spanishReviews
+    fun assessmentOptions() = Assessment.values().toSet()
 }

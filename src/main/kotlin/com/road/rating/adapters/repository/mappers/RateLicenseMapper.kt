@@ -4,7 +4,7 @@ import com.road.rating.domain.model.RateLicenseModel
 import com.road.rating.adapters.repository.doc.RateLicenseDoc
 
 fun RateLicenseModel.toDoc() = RateLicenseDoc(
-    id = 0,
+    id = id,
     license = license,
     reviews = reviews,
     assessment = assessment.name
