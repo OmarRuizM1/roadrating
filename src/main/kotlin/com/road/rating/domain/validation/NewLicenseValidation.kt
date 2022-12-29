@@ -13,6 +13,10 @@ class NewLicenseValidation : RateLicenseValidator {
     override fun validate(rateLicenseModel: RateLicenseModel) {
         val newLicenseFind = newLicense.matcher(rateLicenseModel.license).find()
         val oldLicenseFind = oldLicense.matcher(rateLicenseModel.license).find()
-        if (!newLicenseFind && !oldLicenseFind) throw ValidationException("Invalid License")
+        if (!newLicenseFind && !oldLicenseFind) throw ValidationException(INVALID_LICENSE)
+    }
+
+    companion object {
+        const val INVALID_LICENSE = "Invalid License"
     }
 }

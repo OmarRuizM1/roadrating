@@ -8,7 +8,8 @@ spring:
 #      username: root
 #      password: root
       database: roadrating
-      port: 27017
+      port: 27016
+#      port: 27017
       host: localhost
 
 #  jpa:
