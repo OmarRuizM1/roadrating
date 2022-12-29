@@ -1,6 +1,6 @@
 
 ### Dependnecies:
-- mongo server
+- mongodb server
 - Java 17
 ## Run APP
 - mvn clean install
