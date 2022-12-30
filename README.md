@@ -1,5 +1,5 @@
 
-### Dependnecies:
+### Dependencies:
 - mongodb server
 - Java 17
 ## Run APP

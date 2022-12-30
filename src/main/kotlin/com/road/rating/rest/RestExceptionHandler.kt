@@ -1,6 +1,6 @@
 package com.road.rating.rest
 
-import com.road.rating.domain.validation.ValidationException
+import com.road.rating.domain.validation.exception.ValidationException
 import mu.KotlinLogging
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

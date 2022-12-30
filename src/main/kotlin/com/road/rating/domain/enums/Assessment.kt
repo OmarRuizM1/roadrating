@@ -9,7 +9,7 @@ enum class Assessment {
             return if (enumContains(name)) Assessment.valueOf(name) else NEUTRAL
         }
 
-        private fun enumContains(name: String): Boolean {
+        fun enumContains(name: String): Boolean {
             return enumValues<Assessment>().any { it.name == name }
         }
     }

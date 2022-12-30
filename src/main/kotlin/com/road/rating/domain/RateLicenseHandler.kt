@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component
 @Component
 class RateLicenseHandler(
     private val rateLicenseRepositoryPort: RateLicenseDocRepositoryAdapter,
-    private val rateLicenseValidator: List<RateLicenseValidator>,
+    private val rateLicenseValidator: RateLicenseValidator,
     private val prepareLicenseUtil: PrepareLicenseUtil
 ) {
 
     fun rate(rateLicenseModel: RateLicenseModel) {
         rateLicenseModel.license = prepareLicenseUtil.prepare(rateLicenseModel.license)
-        rateLicenseValidator.parallelStream().forEach { it.validate(rateLicenseModel) }
+        rateLicenseValidator.validate(rateLicenseModel)
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
 
