@@ -6,6 +6,6 @@
 - mvn clean install
 - mvn spring-boot:run
 ### OpenApi
-- http://localhost:8181/swagger-ui/index.html
+- http://localhost:8080/swagger-ui/index.html
 ### //TODO 
 - Use Docker
