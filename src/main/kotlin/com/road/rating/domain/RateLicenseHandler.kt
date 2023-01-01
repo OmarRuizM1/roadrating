@@ -6,6 +6,8 @@ import com.road.rating.domain.enums.Assessment
 import com.road.rating.domain.model.RateLicenseModel
 import com.road.rating.domain.util.PrepareLicenseUtil
 import com.road.rating.domain.validation.RateLicenseValidator
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.springframework.stereotype.Component
 
 @Component
@@ -14,10 +16,18 @@ class RateLicenseHandler(
     private val rateLicenseValidator: RateLicenseValidator,
     private val prepareLicenseUtil: PrepareLicenseUtil
 ) {
-
     fun rate(rateLicenseModel: RateLicenseModel) {
         rateLicenseModel.license = prepareLicenseUtil.prepare(rateLicenseModel.license)
         rateLicenseValidator.validate(rateLicenseModel)
+
+        runBlocking {
+            launch {
+                saveLicense(rateLicenseModel)
+            }
+        }
+    }
+
+    suspend fun saveLicense(rateLicenseModel: RateLicenseModel) {
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
 
