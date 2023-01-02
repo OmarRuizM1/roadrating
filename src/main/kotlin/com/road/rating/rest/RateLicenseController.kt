@@ -4,9 +4,11 @@ import com.road.rating.domain.RateLicenseHandler
 import com.road.rating.rest.dto.RateLicenseDTO
 import com.road.rating.rest.mappers.toModel
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -21,5 +23,8 @@ class RateLicenseController(private val rateLicenseHandler: RateLicenseHandler) 
 
     @GetMapping("/assessmentOptions")
     fun assessmentOptions() = rateLicenseHandler.assessmentOptions()
+
+    @GetMapping("/getLicenseStats")
+    fun getPositiveLicenses(@RequestParam limit: Long?) = rateLicenseHandler.getLicenseStats(limit)
 
 }

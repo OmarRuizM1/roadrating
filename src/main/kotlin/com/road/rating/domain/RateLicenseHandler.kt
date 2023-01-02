@@ -31,6 +31,8 @@ class RateLicenseHandler(
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
 
+    fun getLicenseStats(limit: Long?) = rateLicenseRepositoryPort.getLicenseStats(limit)
+
     fun tagOptions() = Tags.spanishTags
     fun assessmentOptions() = Assessment.values().toSet()
 }
