@@ -16,6 +16,8 @@ class RateLicenseHandler(
     private val rateLicenseValidator: RateLicenseValidator,
     private val prepareLicenseUtil: PrepareLicenseUtil
 ) {
+
+    private val defaultLimit: Long = 5
     fun rate(rateLicenseModel: RateLicenseModel) {
         rateLicenseModel.license = prepareLicenseUtil.prepare(rateLicenseModel.license)
         rateLicenseValidator.validate(rateLicenseModel)
@@ -31,7 +33,7 @@ class RateLicenseHandler(
         rateLicenseRepositoryPort.save(rateLicenseModel)
     }
 
-    fun getLicenseStats(limit: Long?) = rateLicenseRepositoryPort.getLicenseStats(limit)
+    fun getLicenseStats(limit: Long?) = rateLicenseRepositoryPort.getLicenseStats(limit ?: defaultLimit)
 
     fun tagOptions() = Tags.spanishTags
     fun assessmentOptions() = Assessment.values().toSet()
