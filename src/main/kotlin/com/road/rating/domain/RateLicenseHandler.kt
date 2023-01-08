@@ -22,19 +22,14 @@ class RateLicenseHandler(
         rateLicenseModel.license = prepareLicenseUtil.prepare(rateLicenseModel.license)
         rateLicenseValidator.validate(rateLicenseModel)
 
-        runBlocking {
-            launch {
-                saveLicense(rateLicenseModel)
-            }
-        }
-    }
-
-    suspend fun saveLicense(rateLicenseModel: RateLicenseModel) {
-        rateLicenseRepositoryPort.save(rateLicenseModel)
+        runBlocking { launch { rateLicenseRepositoryPort.save(rateLicenseModel) } }
     }
 
     fun getLicenseStats(limit: Long?) = rateLicenseRepositoryPort.getLicenseStats(limit ?: defaultLimit)
 
+    fun getTagStats(tag: String, limit: Long?) = rateLicenseRepositoryPort.getStatsByTag(tag, limit ?: defaultLimit)
+
     fun tagOptions() = Tags.spanishTags
+
     fun assessmentOptions() = Assessment.values().toSet()
 }

@@ -6,11 +6,11 @@ data class RateLicenseStatsDoc(
 )
 
 data class RateLicenseStatDoc(
-    val id: Id,
+    val id: RateLicenseStatId,
     val count: Int,
 )
 
-data class Id(
+data class RateLicenseStatId(
     val license: String,
     val assessment: String,
 )

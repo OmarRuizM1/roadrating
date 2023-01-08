@@ -27,4 +27,7 @@ class RateLicenseController(private val rateLicenseHandler: RateLicenseHandler) 
     @GetMapping("/getLicenseStats")
     fun getLicenseStats(@RequestParam limit: Long?) = rateLicenseHandler.getLicenseStats(limit).toDto()
 
+    @GetMapping("/getTagStats")
+    fun getTagStats(@RequestParam tag: String, @RequestParam limit: Long?) = rateLicenseHandler.getTagStats(tag, limit).toDto()
+
 }

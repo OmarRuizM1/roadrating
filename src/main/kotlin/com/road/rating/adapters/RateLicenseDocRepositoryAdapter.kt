@@ -4,14 +4,18 @@ import com.road.rating.adapters.repository.RateLicenseMongoDBRepository
 import com.road.rating.adapters.repository.doc.RateLicenseDoc
 import com.road.rating.adapters.repository.doc.RateLicenseStatDoc
 import com.road.rating.adapters.repository.doc.RateLicenseStatsDoc
+import com.road.rating.adapters.repository.doc.RateTagStatDoc
+import com.road.rating.adapters.repository.doc.RateTagStatsDoc
 import com.road.rating.adapters.repository.mappers.toDoc
 import com.road.rating.adapters.repository.mappers.toModel
 import com.road.rating.domain.constants.Constants.ASSESSMENT
 import com.road.rating.domain.constants.Constants.COUNT
 import com.road.rating.domain.constants.Constants.LICENSE
+import com.road.rating.domain.constants.Constants.TAGS
 import com.road.rating.domain.enums.Assessment
 import com.road.rating.domain.model.RateLicenseModel
 import com.road.rating.domain.model.RateLicenseStatsModel
+import com.road.rating.domain.model.RateTagStatsModel
 import com.road.rating.domain.port.RateLicenseRepositoryPort
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
@@ -39,13 +43,26 @@ class RateLicenseDocRepositoryAdapter(
     }
 
     private fun getStats(limit: Long, assessment: Assessment): List<RateLicenseStatDoc> {
-        val newAggregation = Aggregation.newAggregation(
+        val aggregation = Aggregation.newAggregation(
             RateLicenseDoc::class.java,
             Aggregation.match(Criteria.where(ASSESSMENT).`is`(assessment.name)),
             Aggregation.group(LICENSE, ASSESSMENT).count().`as`(COUNT),
             Aggregation.sort(Sort.by(Sort.Direction.DESC, COUNT)),
             Aggregation.limit(limit)
         )
-        return mongoOperations.aggregate(newAggregation, RateLicenseStatDoc::class.java).mappedResults
+        return mongoOperations.aggregate(aggregation, RateLicenseStatDoc::class.java).mappedResults
+    }
+
+    override fun getStatsByTag(tag: String, limit: Long): RateTagStatsModel {
+        val aggregation = Aggregation.newAggregation(
+            RateLicenseDoc::class.java,
+            Aggregation.match(Criteria.where(TAGS).`is`(tag)),
+            Aggregation.group(LICENSE).count().`as`(COUNT),
+            Aggregation.sort(Sort.by(Sort.Direction.DESC, COUNT)),
+            Aggregation.limit(limit)
+        )
+        val rateTagStatsDoc = RateTagStatsDoc(tag, mongoOperations.aggregate(aggregation, RateTagStatDoc::class.java).mappedResults.toSet())
+
+        return rateTagStatsDoc.toModel()
     }
 }
